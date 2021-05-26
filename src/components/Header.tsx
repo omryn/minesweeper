@@ -36,7 +36,7 @@ export const Header = ({
       <input id="mines" type="number" value={mines} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
       <label htmlFor="reset">New game</label>
       <button id="reset" className="header__reset-button" onClick={onReset}/>
-      <Timer key={timerId}/>
+      <Timer key={timerId} active={true}/>
     </div>
   </header>
 );
