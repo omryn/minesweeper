@@ -36,9 +36,9 @@ export const Board = (props: BoardProps) => {
   };
 
   return (
-    <div className={`board ${statusClass[board.status]}`}>
+    <div className={`board ${statusClass[board.status]}`} role="table">
       {board.cells.map((column, i) => (
-        <div key={i} className="board__line" data-testid="column">
+        <div key={i} className="board__line" role="column">
           {column.map((cell, j) => (
             <Cell
               key={`${i}-${j}`}
