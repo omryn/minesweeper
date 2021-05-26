@@ -12,6 +12,7 @@ export interface HeaderProps {
   setWidth: ChangeHandler;
   onReset: () => void;
   timerId:number
+  timerActive:boolean
 }
 const handleWith = (fn:ChangeHandler) => (e:ChangeEvent<HTMLInputElement>) => fn(Number(e.target.value))
 
@@ -23,7 +24,8 @@ export const Header = ({
   setHeight,
   setWidth,
   onReset,
-  timerId
+  timerId,
+  timerActive
 }: HeaderProps) => (
   <header className="header">
     <h1>Best mine sweeper ever</h1>
@@ -36,7 +38,7 @@ export const Header = ({
       <input id="mines" type="number" value={mines} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
       <label htmlFor="reset">New game</label>
       <button id="reset" className="header__reset-button" onClick={onReset}/>
-      <Timer key={timerId} active={true}/>
+      <Timer key={timerId} active={timerActive}/>
     </div>
   </header>
 );
