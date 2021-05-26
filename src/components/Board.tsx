@@ -8,17 +8,18 @@ export interface BoardProps {
   width: number;
   height: number;
   minesProbability: number;
+  board?: GameBoard;
   onActiveChanged: (state: boolean) => void;
 }
 
 export const Board = (props: BoardProps) => {
-  const [board, _setBoard] = useState(newGame(props.width, props.height, props.minesProbability));
+  const [board, _setBoard] = useState(props.board || newGame(props.width, props.height, props.minesProbability));
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setBoard(newGame(props.width, props.height, 0.1));
+    setBoard(props.board || newGame(props.width, props.height, props.minesProbability));
     setActive(false);
-  }, [props.height, props.width, props.minesProbability]);
+  }, [props.height, props.width, props.minesProbability, props.board]);
 
   useEffect(() => {
     props.onActiveChanged(active);
@@ -37,7 +38,7 @@ export const Board = (props: BoardProps) => {
   return (
     <div className={`board ${statusClass[board.status]}`}>
       {board.cells.map((column, i) => (
-        <div key={i} className="board__line" data-testid="line">
+        <div key={i} className="board__line" data-testid="column">
           {column.map((cell, j) => (
             <Cell
               key={`${i}-${j}`}
