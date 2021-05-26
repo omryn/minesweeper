@@ -5,8 +5,8 @@ import { useState } from "react";
 import { GameBoard } from "lib/minesweeper.types";
 
 function App(props:{board?:GameBoard}) {
-  const [width, setWidth] = useState(30);
-  const [height, setHeight] = useState(20);
+  const [width, setWidth] = useState(props.board?.width || 30);
+  const [height, setHeight] = useState(props.board?.height || 20);
   const [mines, setMines] = useState(10);
   const [counter, setCounter] = useState(0);
   const [active, setActive] = useState(false) 
