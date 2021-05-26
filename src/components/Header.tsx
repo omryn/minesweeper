@@ -1,44 +1,23 @@
 import "./Header.scss";
 import { Timer } from "components/Timer";
-import { ChangeEvent } from "react";
-
-type ChangeHandler = (value: number) => void;
 export interface HeaderProps {
   height: number;
   width: number;
   mines: number;
-  setMines: ChangeHandler;
-  setHeight:ChangeHandler;
-  setWidth: ChangeHandler;
-  onReset: () => void;
-  timerId:number
-  timerActive:boolean
 }
-const handleWith = (fn:ChangeHandler) => (e:ChangeEvent<HTMLInputElement>) => fn(Number(e.target.value))
-
-export const Header = ({
-  width,
-  height,
-  mines,
-  setMines,
-  setHeight,
-  setWidth,
-  onReset,
-  timerId,
-  timerActive
-}: HeaderProps) => (
+export const Header = ({ width, height, mines }: HeaderProps) => (
   <header className="header">
     <h1>Best mine sweeper ever</h1>
     <div className="header__inputs">
       <label htmlFor="width">Width</label>
-      <input id="width" type="number" value={width} min="3" max="300" step="1" onChange={handleWith(setWidth)}/>
+      <input id="width" type="number" value={width} min="3" max="300" step="1" />
       <label htmlFor="height">Height</label>
-      <input id="height" type="number" value={height} min="3" max="300" step="1" onChange={handleWith(setHeight)}/>
+      <input id="height" type="number" value={height} min="3" max="300" step="1" />
       <label htmlFor="mines">Mines %</label>
-      <input id="mines" type="number" value={mines} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
+      <input id="mines" type="number" value={mines} min="1" max="100" step="1" />
       <label htmlFor="reset">New game</label>
-      <button id="reset" className="header__reset-button" onClick={onReset}/>
-      <Timer key={timerId} active={timerActive}/>
+      <button id="reset" className="header__reset-button" />
+      <Timer />
     </div>
   </header>
 );
