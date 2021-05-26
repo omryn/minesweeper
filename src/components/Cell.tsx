@@ -37,7 +37,6 @@ export const Cell = (props: CellProps) => {
       role="gridcell"
       onClick={props.onClick}
       onContextMenu={props.onRightClick}
-      data-testid="cell"
       className={`board__cell ${cellClass}`}
     >
       {props.status === CELL_STATUS.VISIBLE && props.value > 0 ? props.value : ""}
