@@ -2,8 +2,6 @@ import { CellState, CELL_STATUS, MINE } from "lib/minesweeper.types";
 import { MouseEventHandler } from "react";
 
 export interface CellProps extends CellState {
-  onClick?: MouseEventHandler;
-  onRightClick?: MouseEventHandler;
 }
 
 export const Cell = (props: CellProps) => {
@@ -34,10 +32,7 @@ export const Cell = (props: CellProps) => {
 
   return (
     <div
-      role="gridcell"
-      onClick={props.onClick}
-      onContextMenu={props.onRightClick}
-      data-testid="cell"
+      role="gridcell"  
       className={`board__cell ${cellClass}`}
     >
       {props.status === CELL_STATUS.VISIBLE && props.value > 0 ? props.value : ""}
