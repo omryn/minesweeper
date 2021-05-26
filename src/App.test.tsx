@@ -1,8 +1,58 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { withMines, emptyBoard } from "lib/helpers";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Best mine sweeper/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  describe("timer", () => {
+    const board = withMines(emptyBoard(3, 3), [
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+      { x: 1, y: 2 },
+    ]);
+    const startApp = () => {
+      render(<App board={board} />);
+      const cell = screen.getAllByRole("gridcell")[0];
+      const timerElm = screen.getByText("00:00");
+      return { cell, timerElm };
+    };
+    const rightClickAndWait = (cell: HTMLElement) =>
+      act(() => {
+        fireEvent.contextMenu(cell);
+        jest.advanceTimersByTime(1001);
+      });
+    const leftClickAndWait = (cell: HTMLElement, duration=1001) =>
+      act(() => {
+        fireEvent.click(cell);
+        jest.advanceTimersByTime(duration);
+      });
+
+    it("starts the timer after first right click", async () => {
+      const { cell, timerElm } = startApp();
+      jest.advanceTimersByTime(10000);
+      expect(timerElm).toHaveTextContent("00:00");
+      rightClickAndWait(cell);
+      expect(timerElm).toHaveTextContent("00:01");
+    });
+
+    it("starts the timer after first right click", async () => {
+      const { cell, timerElm } = startApp();
+      jest.advanceTimersByTime(10000);
+      expect(timerElm).toHaveTextContent("00:00");
+      leftClickAndWait(cell);
+      expect(timerElm).toHaveTextContent("00:01");
+    });
+
+    it("stops after the game if over", () => {
+      const { cell, timerElm } = startApp();
+      leftClickAndWait(cell);
+      const loosingCell = screen.getAllByRole("gridcell")[4];
+      leftClickAndWait(loosingCell, 10000);
+      expect(timerElm).toHaveTextContent("00:01");
+    });
+  });
+
 });

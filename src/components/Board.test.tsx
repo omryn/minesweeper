@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Board } from "components/Board";
 import { emptyBoard, withMines } from "lib/helpers";
-import { newGame } from "lib/minesweeper";
 
 describe("Board", () => {
   it("contains width*height empty Cells in height lines", () => {
