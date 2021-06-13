@@ -1,5 +1,4 @@
 import { CellState, CELL_STATUS, MINE } from "lib/minesweeper.types";
-import { MouseEventHandler } from "react";
 
 export interface CellProps extends CellState {
 }
