@@ -10,9 +10,11 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@ts-tools/node": "^2.1.1",
+    "@types/react-redux": "^7.1.16",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
