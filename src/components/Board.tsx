@@ -23,12 +23,13 @@ export const Board = (props: BoardProps) => {
 
   useEffect(() => {
     props.onActiveChanged(active);
-  }, [active]);
+  }, [props, active]);
 
   const setBoard = (board: GameBoard) => {
     _setBoard(board);
     setActive(board.status === GAME_STATUS.PLAYING);
   };
+  
   const statusClass: Record<GAME_STATUS, string> = {
     [GAME_STATUS.PLAYING]: "board--playing",
     [GAME_STATUS.LOST]: "board--lost",
@@ -38,7 +39,7 @@ export const Board = (props: BoardProps) => {
   return (
     <div className={`board ${statusClass[board.status]}`} role="table">
       {board.cells.map((column, i) => (
-        <div key={i} className="board__line" role="column">
+        <div key={i} className="board__line" role="row">
           {column.map((cell, j) => (
             <Cell
               key={`${i}-${j}`}
