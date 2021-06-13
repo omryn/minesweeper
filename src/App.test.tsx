@@ -62,7 +62,7 @@ describe("App", () => {
         height = 13;
       fireEvent.change(screen.getByLabelText(/Height/), { target: { value: height } });
       fireEvent.change(screen.getByLabelText(/Width/), { target: { value: width } });
-      expect(screen.getAllByRole("column")).toHaveLength(width);
+      expect(screen.getAllByRole("row")).toHaveLength(width);
       expect(screen.getAllByRole("gridcell")).toHaveLength(width * height);
     });
 

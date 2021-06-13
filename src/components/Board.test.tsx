@@ -12,7 +12,7 @@ describe("Board", () => {
       expect(cell).toBeEmptyDOMElement();
       expect(cell).toHaveClass("board__cell--hidden");
     });
-    expect(screen.getAllByRole("column")).toHaveLength(7);
+    expect(screen.getAllByRole("row")).toHaveLength(7);
   });
 
   describe("when user left clicks", () => {
