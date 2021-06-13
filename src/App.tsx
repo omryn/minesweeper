@@ -12,7 +12,7 @@ function App(_props:{board?:GameBoard}) {
     <div className="App">
       <Header width={width} height={height} mines={mines} />
       <main className="content">
-        <Board height={2} width={2} />
+        <Board height={width} width={height} minesProbability={mines} onActiveChanged={()=>void(0)}/>
       </main>
     </div>
   );

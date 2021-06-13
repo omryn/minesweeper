@@ -10,11 +10,11 @@ export const Header = ({ width, height, mines }: HeaderProps) => (
     <h1>Best mine sweeper ever</h1>
     <div className="header__inputs">
       <label htmlFor="width">Width</label>
-      <input id="width" type="number" value={width} min="3" max="300" step="1" />
+      <input id="width" type="number" readOnly value={width} min="3" max="300" step="1" />
       <label htmlFor="height">Height</label>
-      <input id="height" type="number" value={height} min="3" max="300" step="1" />
+      <input id="height" type="number" readOnly value={height} min="3" max="300" step="1" />
       <label htmlFor="mines">Mines %</label>
-      <input id="mines" type="number" value={mines} min="1" max="100" step="1" />
+      <input id="mines" type="number" readOnly value={mines} min="1" max="100" step="1" />
       <label htmlFor="reset">New game</label>
       <button id="reset" className="header__reset-button" />
       <Timer />
