@@ -18,8 +18,8 @@ export const Header = () => {
       <input id="width" type="number" value={width} min="3" max="300" step="1" onChange={handleWith(setWidth)}/>
       <label htmlFor="height">Height</label>
       <input id="height" type="number" value={height} min="3" max="300" step="1" onChange={handleWith(setHeight)}/>
-      <label htmlFor="mines">Mines %</label>
-      <input id="mines" type="number" value={minesProbability} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
+      <label htmlFor="mines">Mines %  </label>
+      <input id="mines" type="number" value={minesProbability} min="1" max="80" step="1" onChange={handleWith(setMines)}/>
       <label htmlFor="reset">New game</label>
       <button id="reset" className="header__reset-button" onClick={reset}/>
       <Timer key={timerKey} active={active}/>

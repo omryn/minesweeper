@@ -2,8 +2,6 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { withMines, emptyBoard } from "lib/helpers";
 import { Provider } from "react-redux";
 import { store, systemActions, userActions } from "store";
-import { gameSlice } from "store/game.slice";
-import { sys } from "typescript";
 import App from "./App";
 
 describe("App", () => {
@@ -75,7 +73,7 @@ describe("App", () => {
       expect(screen.getAllByRole("gridcell")).toHaveLength(width * height);
     });
 
-    it("reset the game with the user input mine%", () => {
+    it("reset the game with the user input mine %", () => {
       fireEvent.change(screen.getByLabelText(/Mines/), { target: { value: 0 } });
       fireEvent.click(screen.getAllByRole("gridcell")[0]);
       expect(screen.getAllByRole("gridcell")[0]).toHaveClass("board__cell--empty");

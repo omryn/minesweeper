@@ -23,7 +23,7 @@ export const gameSlice = createSlice({
       return model.nextStatus(s, cell);
     },
     newGame: (_, { payload: { width, height, minesProbability } }: PayloadAction<typeof initialBoardState>) => {
-      return model.newGame(width, height, minesProbability);
+      return model.newGame(width, height, minesProbability/100);
     },
     setBoard: (_, { payload: board }: PayloadAction<GameBoard>) => {
       return board;
