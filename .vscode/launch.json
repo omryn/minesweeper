@@ -1,6 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
+    {
+        "name": "Launch Chrome",
+        "port": 9222,
+        "request": "launch",
+        "type": "pwa-chrome",
+        "webRoot": "${workspaceFolder}"
+    },
         {
             "name": "Debug CRA Tests",
             "type": "node",

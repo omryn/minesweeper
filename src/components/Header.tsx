@@ -1,33 +1,17 @@
 import "./Header.scss";
 import { Timer } from "components/Timer";
 import { ChangeEvent } from "react";
+import { useAppSelector, usePlayerActions } from "store";
 
 type ChangeHandler = (value: number) => void;
-export interface HeaderProps {
-  height: number;
-  width: number;
-  mines: number;
-  setMines: ChangeHandler;
-  setHeight:ChangeHandler;
-  setWidth: ChangeHandler;
-  onReset: () => void;
-  timerId:number
-  timerActive:boolean
-}
 const handleWith = (fn:ChangeHandler) => (e:ChangeEvent<HTMLInputElement>) => fn(Number(e.target.value))
 
-export const Header = ({
-  width,
-  height,
-  mines,
-  setMines,
-  setHeight,
-  setWidth,
-  onReset,
-  timerId,
-  timerActive
-}: HeaderProps) => (
-  <header className="header">
+export const Header = () => {
+  const {setHeight, setMines, setWidth, reset} = usePlayerActions()
+  const {width, height, minesProbability} = useAppSelector(state => state.board)
+  const {active, timerKey} = useAppSelector(state => state.timer)
+
+  return   (<header className="header">
     <h1>Best mine sweeper ever</h1>
     <div className="header__inputs">
       <label htmlFor="width">Width</label>
@@ -35,10 +19,11 @@ export const Header = ({
       <label htmlFor="height">Height</label>
       <input id="height" type="number" value={height} min="3" max="300" step="1" onChange={handleWith(setHeight)}/>
       <label htmlFor="mines">Mines %</label>
-      <input id="mines" type="number" value={mines} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
+      <input id="mines" type="number" value={minesProbability} min="1" max="100" step="1" onChange={handleWith(setMines)}/>
       <label htmlFor="reset">New game</label>
-      <button id="reset" className="header__reset-button" onClick={onReset}/>
-      <Timer key={timerId} active={timerActive}/>
+      <button id="reset" className="header__reset-button" onClick={reset}/>
+      <Timer key={timerKey} active={active}/>
     </div>
   </header>
 );
+}
