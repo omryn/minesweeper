@@ -1,13 +1,13 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { withMines, emptyBoard } from "lib/helpers";
 import { Provider } from "react-redux";
-import { store, systemActions, userActions } from "store";
+import { store, systemActions } from "store";
 import App from "./App";
 
 describe("App", () => {
   beforeEach(() => {
     jest.useFakeTimers();
-    render(
+    render(   
       <Provider store={store}>
         <App />
       </Provider>
